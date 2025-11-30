@@ -7,6 +7,7 @@ import Header from "@/components/header"
 import Footer from "@/components/footer"
 import { ThemeProvider } from "@/components/theme-provider"
 import { LanguageProvider } from "@/contexts/language-context"
+import AIChatbot from "@/components/ai-chatbot"
 
 const inter = Inter({ subsets: ["latin"] })
 
@@ -33,6 +34,7 @@ export default function RootLayout({
             <Header />
             <main>{children}</main>
             <Footer />
+            <AIChatbot />
           </LanguageProvider>
         </ThemeProvider>
       </body>
