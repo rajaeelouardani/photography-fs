@@ -2,6 +2,7 @@
 
 import { z } from "zod"
 import { revalidatePath } from "next/cache"
+import { sendContactNotification } from "@/lib/email"
 
 // Schéma de validation pour le formulaire de contact
 const ContactSchema = z.object({
@@ -32,13 +33,29 @@ export async function submitContactForm(formData: FormData) {
 
     const { name, email, subject, message } = validatedFields.data
 
-    // Dans un environnement de production, vous pourriez:
-    // 1. Enregistrer le message dans une base de données
-    // 2. Envoyer un email via un service comme Nodemailer, SendGrid, etc.
+    // Envoyer l'email au club
+    console.log("Attempting to send email notification...")
+    const emailResult = await sendContactNotification({
+      name,
+      email,
+      subject,
+      message,
+    })
 
-    // Pour l'instant, nous simulons un succès
-    console.log("Message reçu:", { name, email, subject, message })
+    console.log("Email result received:", JSON.stringify(emailResult, null, 2))
 
+    if (!emailResult.success) {
+      console.error("Erreur lors de l'envoi de l'email:", emailResult.error)
+      return {
+        success: false,
+        message: emailResult.error 
+          ? `Erreur: ${emailResult.error}` 
+          : "Une erreur s'est produite lors de l'envoi du message. Veuillez réessayer.",
+      }
+    }
+
+    console.log("Email sent successfully, returning success response")
+    
     // Rafraîchir la page pour mettre à jour les données
     revalidatePath("/contact")
 

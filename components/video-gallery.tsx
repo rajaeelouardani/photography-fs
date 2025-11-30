@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Play } from "lucide-react"
 import { Dialog, DialogContent } from "@/components/ui/dialog"
+import { useLanguage } from "@/contexts/language-context"
 
 // Vidéos organisées par catégorie
 const videoItems = [
@@ -59,6 +60,7 @@ const videoItems = [
 ]
 
 export default function VideoGallery({ categories }) {
+  const { t } = useLanguage()
   const [activeCategory, setActiveCategory] = useState("all")
   const [selectedVideo, setSelectedVideo] = useState(null)
 
@@ -89,7 +91,7 @@ export default function VideoGallery({ categories }) {
       {/* Video grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredItems.map((item) => (
-          <Card key={item.id} className="overflow-hidden flex flex-col h-full">
+          <Card key={item.id} className="overflow-hidden flex flex-col h-full bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700">
             <div className="relative aspect-video cursor-pointer group" onClick={() => setSelectedVideo(item)}>
               <img
                 src={getYouTubeThumbnail(item.videoId) || "/placeholder.svg"}
@@ -97,20 +99,20 @@ export default function VideoGallery({ categories }) {
                 className="w-full h-full object-cover"
               />
               <div className="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity">
-                <div className="rounded-full bg-primary/90 p-4">
+                <div className="rounded-full bg-primary/90 dark:bg-red-600/90 p-4">
                   <Play className="h-8 w-8 text-white" />
                 </div>
               </div>
             </div>
             <CardHeader className="pb-2">
-              <CardTitle className="text-lg">{item.title}</CardTitle>
+              <CardTitle className="text-lg text-gray-900 dark:text-gray-100">{item.title}</CardTitle>
             </CardHeader>
             <CardContent className="pb-2 pt-0 flex-grow">
-              <p className="text-muted-foreground">{item.description}</p>
+              <p className="text-muted-foreground dark:text-gray-400">{item.description}</p>
             </CardContent>
             <CardFooter className="pt-0">
-              <Button variant="outline" className="w-full" onClick={() => setSelectedVideo(item)}>
-                Regarder la vidéo
+              <Button variant="outline" className="w-full border-gray-300 dark:border-gray-700" onClick={() => setSelectedVideo(item)}>
+                {t("videos.watchVideo")}
               </Button>
             </CardFooter>
           </Card>
@@ -120,13 +122,13 @@ export default function VideoGallery({ categories }) {
       {/* Empty state */}
       {filteredItems.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-lg">Aucune vidéo trouvée dans cette catégorie.</p>
+          <p className="text-lg text-gray-700 dark:text-gray-300">{t("videos.noVideosFound")}</p>
         </div>
       )}
 
       {/* Video dialog */}
       <Dialog open={!!selectedVideo} onOpenChange={(open) => !open && setSelectedVideo(null)}>
-        <DialogContent className="max-w-4xl p-0">
+        <DialogContent className="max-w-4xl p-0 bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700">
           {selectedVideo && (
             <div>
               <div className="aspect-video w-full">
@@ -141,8 +143,8 @@ export default function VideoGallery({ categories }) {
                 ></iframe>
               </div>
               <div className="p-4">
-                <h2 className="text-xl font-bold">{selectedVideo.title}</h2>
-                <p className="text-muted-foreground">{selectedVideo.description}</p>
+                <h2 className="text-xl font-bold text-gray-900 dark:text-gray-100">{selectedVideo.title}</h2>
+                <p className="text-muted-foreground dark:text-gray-400">{selectedVideo.description}</p>
               </div>
             </div>
           )}

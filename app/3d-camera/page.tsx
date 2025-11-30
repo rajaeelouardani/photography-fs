@@ -1,71 +1,69 @@
+"use client"
+
 import CameraModel from "@/components/camera-model"
 import Image from "next/image"
 import { Card, CardContent } from "@/components/ui/card"
-
-export const metadata = {
-  title: "Caméra 3D Interactive | Photography Club FSM",
-  description: "Explorez les composants d'un appareil photo en 3D",
-}
+import { useLanguage } from "@/contexts/language-context"
 
 export default function CameraPage() {
+  const { t } = useLanguage()
+
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto py-8 bg-white dark:bg-gray-900">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-6 text-center">Caméra 3D Interactive</h1>
-        <p className="text-lg mb-8 text-center">
-          Explorez les différents composants d'un appareil photo en 3D. Cliquez sur les parties pour voir leur
-          description détaillée.
+        <h1 className="text-4xl font-bold mb-6 text-center text-gray-900 dark:text-white">{t("camera3d.title")}</h1>
+        <p className="text-lg mb-8 text-center text-gray-700 dark:text-gray-300">
+          {t("camera3d.subtitle")}
         </p>
       </div>
 
-      <div className="h-[80vh] w-full bg-gradient-to-b from-background to-muted/30 rounded-xl shadow-lg overflow-hidden">
+      <div className="h-[80vh] w-full bg-gradient-to-b from-background to-muted/30 dark:from-gray-900 dark:to-gray-800 rounded-xl shadow-lg overflow-hidden">
         <CameraModel />
       </div>
 
       <div className="max-w-4xl mx-auto mt-8">
-        <h2 className="text-2xl font-bold mb-4">Guide des composants</h2>
-        <p className="mb-4">
-          Cette visualisation 3D interactive vous permet d'explorer les principaux composants d'un appareil photo reflex
-          numérique. Utilisez le bouton "Démonter" pour voir les composants séparés et mieux comprendre leur agencement.
+        <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">{t("camera3d.guideTitle")}</h2>
+        <p className="mb-4 text-gray-700 dark:text-gray-300">
+          {t("camera3d.guideDescription")}
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
-          <div className="bg-muted p-4 rounded-lg">
-            <h3 className="font-bold mb-2">Composants externes</h3>
-            <ul className="list-disc pl-6 space-y-2">
+          <div className="bg-muted dark:bg-gray-800 p-4 rounded-lg">
+            <h3 className="font-bold mb-2 text-gray-900 dark:text-white">{t("camera3d.externalComponents")}</h3>
+            <ul className="list-disc pl-6 space-y-2 text-gray-700 dark:text-gray-300">
               <li>
-                <strong>Boîtier</strong> : La structure principale qui contient tous les composants.
+                <strong>{t("camera3d.body")}</strong> : {t("camera3d.bodyDesc")}
               </li>
               <li>
-                <strong>Objectif</strong> : Système optique qui capture et focalise la lumière.
+                <strong>{t("camera3d.lens")}</strong> : {t("camera3d.lensDesc")}
               </li>
               <li>
-                <strong>Viseur</strong> : Permet de cadrer l'image avant la prise de vue.
+                <strong>{t("camera3d.viewfinder")}</strong> : {t("camera3d.viewfinderDesc")}
               </li>
               <li>
-                <strong>Flash</strong> : Fournit un éclairage supplémentaire en conditions de faible luminosité.
+                <strong>{t("camera3d.flash")}</strong> : {t("camera3d.flashDesc")}
               </li>
               <li>
-                <strong>Écran LCD</strong> : Affiche les images et les menus de l'appareil.
+                <strong>{t("camera3d.lcdScreen")}</strong> : {t("camera3d.lcdScreenDesc")}
               </li>
             </ul>
           </div>
-          <div className="bg-muted p-4 rounded-lg">
-            <h3 className="font-bold mb-2">Composants internes</h3>
-            <ul className="list-disc pl-6 space-y-2">
+          <div className="bg-muted dark:bg-gray-800 p-4 rounded-lg">
+            <h3 className="font-bold mb-2 text-gray-900 dark:text-white">{t("camera3d.internalComponents")}</h3>
+            <ul className="list-disc pl-6 space-y-2 text-gray-700 dark:text-gray-300">
               <li>
-                <strong>Capteur</strong> : Convertit la lumière en signal électrique.
+                <strong>{t("camera3d.sensor")}</strong> : {t("camera3d.sensorDesc")}
               </li>
               <li>
-                <strong>Miroir</strong> : Réfléchit l'image vers le viseur optique.
+                <strong>{t("camera3d.mirror")}</strong> : {t("camera3d.mirrorDesc")}
               </li>
               <li>
-                <strong>Batterie</strong> : Fournit l'énergie nécessaire au fonctionnement.
+                <strong>{t("camera3d.battery")}</strong> : {t("camera3d.batteryDesc")}
               </li>
               <li>
-                <strong>Carte mémoire</strong> : Stocke les images capturées.
+                <strong>{t("camera3d.memoryCard")}</strong> : {t("camera3d.memoryCardDesc")}
               </li>
               <li>
-                <strong>Molette de mode</strong> : Permet de sélectionner les différents modes de prise de vue.
+                <strong>{t("camera3d.modeDial")}</strong> : {t("camera3d.modeDialDesc")}
               </li>
             </ul>
           </div>
@@ -74,7 +72,7 @@ export default function CameraPage() {
 
       {/* Nouvelle section comparative entre hybride et reflex */}
       <div className="max-w-4xl mx-auto mt-16 mb-8">
-        <h2 className="text-2xl font-bold mb-6">Différences entre appareils hybrides et reflex</h2>
+        <h2 className="text-2xl font-bold mb-6 text-gray-900 dark:text-white">{t("camera3d.differencesTitle")}</h2>
 
         <div className="relative w-full aspect-[2/1] mb-8">
           <Image
@@ -86,118 +84,112 @@ export default function CameraPage() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          <Card>
+          <Card className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700">
             <CardContent className="p-6">
-              <h3 className="text-xl font-bold text-center mb-4 text-primary">Appareils Hybrides</h3>
+              <h3 className="text-xl font-bold text-center mb-4 text-primary dark:text-red-500">{t("camera3d.hybridTitle")}</h3>
               <ul className="space-y-3">
                 <li className="flex items-start gap-2">
-                  <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <div className="h-2 w-2 rounded-full bg-primary"></div>
+                  <div className="h-5 w-5 rounded-full bg-primary/10 dark:bg-red-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <div className="h-2 w-2 rounded-full bg-primary dark:bg-red-500"></div>
                   </div>
-                  <span>
-                    <strong>Absence de miroir</strong> : La lumière passe directement de l'objectif au capteur.
+                  <span className="text-gray-700 dark:text-gray-300">
+                    <strong>{t("camera3d.hybridNoMirror")}</strong> : {t("camera3d.hybridNoMirrorDesc")}
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <div className="h-2 w-2 rounded-full bg-primary"></div>
+                  <div className="h-5 w-5 rounded-full bg-primary/10 dark:bg-red-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <div className="h-2 w-2 rounded-full bg-primary dark:bg-red-500"></div>
                   </div>
-                  <span>
-                    <strong>Viseur électronique (EVF)</strong> : Affiche une image numérique provenant directement du
-                    capteur.
+                  <span className="text-gray-700 dark:text-gray-300">
+                    <strong>{t("camera3d.hybridEVF")}</strong> : {t("camera3d.hybridEVFDesc")}
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <div className="h-2 w-2 rounded-full bg-primary"></div>
+                  <div className="h-5 w-5 rounded-full bg-primary/10 dark:bg-red-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <div className="h-2 w-2 rounded-full bg-primary dark:bg-red-500"></div>
                   </div>
-                  <span>
-                    <strong>Taille réduite</strong> : Plus compacts et légers grâce à l'absence de mécanisme de miroir.
+                  <span className="text-gray-700 dark:text-gray-300">
+                    <strong>{t("camera3d.hybridSize")}</strong> : {t("camera3d.hybridSizeDesc")}
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <div className="h-2 w-2 rounded-full bg-primary"></div>
+                  <div className="h-5 w-5 rounded-full bg-primary/10 dark:bg-red-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <div className="h-2 w-2 rounded-full bg-primary dark:bg-red-500"></div>
                   </div>
-                  <span>
-                    <strong>Distance focale réduite</strong> : Distance plus courte entre l'objectif et le capteur.
+                  <span className="text-gray-700 dark:text-gray-300">
+                    <strong>{t("camera3d.hybridFocal")}</strong> : {t("camera3d.hybridFocalDesc")}
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <div className="h-2 w-2 rounded-full bg-primary"></div>
+                  <div className="h-5 w-5 rounded-full bg-primary/10 dark:bg-red-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <div className="h-2 w-2 rounded-full bg-primary dark:bg-red-500"></div>
                   </div>
-                  <span>
-                    <strong>Silencieux</strong> : Pas de bruit mécanique du miroir lors de la prise de vue.
+                  <span className="text-gray-700 dark:text-gray-300">
+                    <strong>{t("camera3d.hybridSilent")}</strong> : {t("camera3d.hybridSilentDesc")}
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <div className="h-2 w-2 rounded-full bg-primary"></div>
+                  <div className="h-5 w-5 rounded-full bg-primary/10 dark:bg-red-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <div className="h-2 w-2 rounded-full bg-primary dark:bg-red-500"></div>
                   </div>
-                  <span>
-                    <strong>Prévisualisation en temps réel</strong> : Le viseur montre exactement ce que le capteur
-                    voit, y compris l'exposition, la balance des blancs et les effets.
+                  <span className="text-gray-700 dark:text-gray-300">
+                    <strong>{t("camera3d.hybridPreview")}</strong> : {t("camera3d.hybridPreviewDesc")}
                   </span>
                 </li>
               </ul>
             </CardContent>
           </Card>
 
-          <Card>
+          <Card className="bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700">
             <CardContent className="p-6">
-              <h3 className="text-xl font-bold text-center mb-4 text-primary">Appareils Reflex</h3>
+              <h3 className="text-xl font-bold text-center mb-4 text-primary dark:text-red-500">{t("camera3d.reflexTitle")}</h3>
               <ul className="space-y-3">
                 <li className="flex items-start gap-2">
-                  <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <div className="h-2 w-2 rounded-full bg-primary"></div>
+                  <div className="h-5 w-5 rounded-full bg-primary/10 dark:bg-red-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <div className="h-2 w-2 rounded-full bg-primary dark:bg-red-500"></div>
                   </div>
-                  <span>
-                    <strong>Système de miroir</strong> : La lumière est réfléchie par un miroir vers le pentaprisme puis
-                    le viseur.
+                  <span className="text-gray-700 dark:text-gray-300">
+                    <strong>{t("camera3d.reflexMirror")}</strong> : {t("camera3d.reflexMirrorDesc")}
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <div className="h-2 w-2 rounded-full bg-primary"></div>
+                  <div className="h-5 w-5 rounded-full bg-primary/10 dark:bg-red-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <div className="h-2 w-2 rounded-full bg-primary dark:bg-red-500"></div>
                   </div>
-                  <span>
-                    <strong>Viseur optique (OVF)</strong> : Montre une image optique directe à travers l'objectif.
+                  <span className="text-gray-700 dark:text-gray-300">
+                    <strong>{t("camera3d.reflexOVF")}</strong> : {t("camera3d.reflexOVFDesc")}
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <div className="h-2 w-2 rounded-full bg-primary"></div>
+                  <div className="h-5 w-5 rounded-full bg-primary/10 dark:bg-red-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <div className="h-2 w-2 rounded-full bg-primary dark:bg-red-500"></div>
                   </div>
-                  <span>
-                    <strong>Taille plus importante</strong> : Plus grands et plus lourds en raison du mécanisme de
-                    miroir et du pentaprisme.
+                  <span className="text-gray-700 dark:text-gray-300">
+                    <strong>{t("camera3d.reflexSize")}</strong> : {t("camera3d.reflexSizeDesc")}
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <div className="h-2 w-2 rounded-full bg-primary"></div>
+                  <div className="h-5 w-5 rounded-full bg-primary/10 dark:bg-red-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <div className="h-2 w-2 rounded-full bg-primary dark:bg-red-500"></div>
                   </div>
-                  <span>
-                    <strong>Distance focale plus longue</strong> : Distance plus grande entre l'objectif et le capteur.
+                  <span className="text-gray-700 dark:text-gray-300">
+                    <strong>{t("camera3d.reflexFocal")}</strong> : {t("camera3d.reflexFocalDesc")}
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <div className="h-2 w-2 rounded-full bg-primary"></div>
+                  <div className="h-5 w-5 rounded-full bg-primary/10 dark:bg-red-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <div className="h-2 w-2 rounded-full bg-primary dark:bg-red-500"></div>
                   </div>
-                  <span>
-                    <strong>Bruit mécanique</strong> : Le mouvement du miroir produit un bruit caractéristique lors de
-                    la prise de vue.
+                  <span className="text-gray-700 dark:text-gray-300">
+                    <strong>{t("camera3d.reflexNoise")}</strong> : {t("camera3d.reflexNoiseDesc")}
                   </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <div className="h-5 w-5 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0 mt-0.5">
-                    <div className="h-2 w-2 rounded-full bg-primary"></div>
+                  <div className="h-5 w-5 rounded-full bg-primary/10 dark:bg-red-500/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <div className="h-2 w-2 rounded-full bg-primary dark:bg-red-500"></div>
                   </div>
-                  <span>
-                    <strong>Vision optique pure</strong> : Le viseur montre une image optique sans latence ni
-                    consommation d'énergie.
+                  <span className="text-gray-700 dark:text-gray-300">
+                    <strong>{t("camera3d.reflexVision")}</strong> : {t("camera3d.reflexVisionDesc")}
                   </span>
                 </li>
               </ul>
@@ -205,28 +197,28 @@ export default function CameraPage() {
           </Card>
         </div>
 
-        <div className="mt-8 bg-muted p-6 rounded-lg">
-          <h3 className="text-xl font-bold mb-4">Quelle technologie choisir ?</h3>
-          <p className="mb-4">
-            Le choix entre un appareil hybride et un reflex dépend de vos besoins spécifiques en photographie :
+        <div className="mt-8 bg-muted dark:bg-gray-800 p-6 rounded-lg">
+          <h3 className="text-xl font-bold mb-4 text-gray-900 dark:text-white">{t("camera3d.chooseTitle")}</h3>
+          <p className="mb-4 text-gray-700 dark:text-gray-300">
+            {t("camera3d.chooseDescription")}
           </p>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
-              <p className="font-medium mb-2">Les hybrides sont idéaux pour :</p>
-              <ul className="list-disc pl-6 space-y-1">
-                <li>Les photographes privilégiant la portabilité</li>
-                <li>La photographie de rue et de voyage</li>
-                <li>La vidéographie (meilleure mise au point automatique)</li>
-                <li>Les débutants souhaitant voir l'effet des réglages en temps réel</li>
+              <p className="font-medium mb-2 text-gray-900 dark:text-gray-100">{t("camera3d.hybridIdeal")}</p>
+              <ul className="list-disc pl-6 space-y-1 text-gray-700 dark:text-gray-300">
+                <li>{t("camera3d.hybridIdeal1")}</li>
+                <li>{t("camera3d.hybridIdeal2")}</li>
+                <li>{t("camera3d.hybridIdeal3")}</li>
+                <li>{t("camera3d.hybridIdeal4")}</li>
               </ul>
             </div>
             <div>
-              <p className="font-medium mb-2">Les reflex sont préférables pour :</p>
-              <ul className="list-disc pl-6 space-y-1">
-                <li>Les photographes habitués aux viseurs optiques</li>
-                <li>La photographie sportive et animalière (meilleure autonomie)</li>
-                <li>Ceux disposant déjà d'un parc d'objectifs compatibles</li>
-                <li>Les situations nécessitant une longue autonomie de batterie</li>
+              <p className="font-medium mb-2 text-gray-900 dark:text-gray-100">{t("camera3d.reflexPreferable")}</p>
+              <ul className="list-disc pl-6 space-y-1 text-gray-700 dark:text-gray-300">
+                <li>{t("camera3d.reflexPreferable1")}</li>
+                <li>{t("camera3d.reflexPreferable2")}</li>
+                <li>{t("camera3d.reflexPreferable3")}</li>
+                <li>{t("camera3d.reflexPreferable4")}</li>
               </ul>
             </div>
           </div>

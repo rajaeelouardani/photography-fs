@@ -36,6 +36,16 @@
     @apply border-border;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply bg-white dark:bg-gray-900 text-foreground;
+  }
+}
+
+@layer utilities {
+  .perspective-2000 {
+    perspective: 2000px;
+  }
+  
+  .duration-600 {
+    transition-duration: 600ms;
   }
 }

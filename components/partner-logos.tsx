@@ -46,7 +46,7 @@ export default function PartnerLogos() {
         <Link
           key={partner.name}
           href={partner.url}
-          className="group relative h-24 flex items-center justify-center p-4 bg-background rounded-lg shadow-sm hover:shadow-md transition-shadow"
+          className="group relative h-24 flex items-center justify-center p-4 bg-white dark:bg-gray-900 rounded-lg shadow-sm dark:shadow-gray-800/50 hover:shadow-md dark:hover:shadow-gray-700/50 transition-shadow border border-gray-200 dark:border-gray-700"
           target="_blank"
           rel="noopener noreferrer"
         >

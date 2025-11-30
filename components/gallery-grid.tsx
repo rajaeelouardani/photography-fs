@@ -120,14 +120,14 @@ export default function GalleryGrid({ categories }) {
       {/* État vide */}
       {filteredItems.length === 0 && (
         <div className="text-center py-12">
-          <p className="text-lg">Aucune image trouvée dans cette catégorie.</p>
+          <p className="text-lg text-gray-700 dark:text-gray-300">Aucune image trouvée dans cette catégorie.</p>
         </div>
       )}
 
       {/* Dialogue lightbox */}
       <Dialog open={!!selectedImage} onOpenChange={(open) => !open && setSelectedImage(null)}>
         <DialogContent className="max-w-4xl p-0 bg-transparent border-none">
-          <div className="relative w-full aspect-[4/3] bg-black rounded-lg overflow-hidden">
+          <div className="relative w-full aspect-[4/3] bg-black dark:bg-gray-900 rounded-lg overflow-hidden">
             {selectedImage && (
               <Image
                 src={selectedImage.image || "/placeholder.svg"}

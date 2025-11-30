@@ -30,16 +30,16 @@ export default function NewsSection() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {newsItems.map((item) => (
-        <Card key={item.id} className="overflow-hidden">
+        <Card key={item.id} className="overflow-hidden bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700">
           <div className="relative h-48 w-full">
             <Image src={item.image || "/placeholder.svg"} alt={item.title} fill className="object-cover" />
           </div>
           <CardHeader>
-            <CardTitle>{item.title}</CardTitle>
-            <CardDescription>{item.date}</CardDescription>
+            <CardTitle className="text-gray-900 dark:text-gray-100">{item.title}</CardTitle>
+            <CardDescription className="text-gray-600 dark:text-gray-400">{item.date}</CardDescription>
           </CardHeader>
           <CardContent>
-            <p>{item.description}</p>
+            <p className="text-gray-700 dark:text-gray-300">{item.description}</p>
           </CardContent>
         </Card>
       ))}

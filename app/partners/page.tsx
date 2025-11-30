@@ -1,14 +1,11 @@
-import type { Metadata } from "next"
+"use client"
+
 import Image from "next/image"
 import Link from "next/link"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { ExternalLink } from "lucide-react"
-
-export const metadata: Metadata = {
-  title: "Partenaires | Photography Club FSM",
-  description: "Découvrez les partenaires officiels du Photography Club FSM",
-}
+import { useLanguage } from "@/contexts/language-context"
 
 const partners = [
   {
@@ -77,20 +74,21 @@ const partners = [
 ]
 
 export default function PartnersPage() {
+  const { t } = useLanguage()
+
   return (
-    <div className="container mx-auto py-12 px-4">
-      <h1 className="text-4xl font-bold mb-8 text-center">Nos partenaires</h1>
-      <p className="text-lg text-center max-w-3xl mx-auto mb-12">
-        Découvrez les organisations et entreprises qui soutiennent le Photography Club FSM et contribuent à notre
-        succès.
+    <div className="container mx-auto py-12 px-4 bg-white dark:bg-gray-900">
+      <h1 className="text-4xl font-bold mb-8 text-center text-gray-900 dark:text-white">{t("partners.title")}</h1>
+      <p className="text-lg text-center max-w-3xl mx-auto mb-12 text-gray-700 dark:text-gray-300">
+        {t("partners.subtitle")}
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {partners.map((partner) => (
-          <Card key={partner.id} className="flex flex-col h-full">
+          <Card key={partner.id} className="flex flex-col h-full bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-700">
             <CardHeader className="pb-4">
               <div className="flex justify-center mb-4">
-                <div className="relative h-24 w-24 rounded-full overflow-hidden bg-muted">
+                <div className="relative h-24 w-24 rounded-full overflow-hidden bg-muted dark:bg-gray-800">
                   <Image
                     src={partner.logo || "/placeholder.svg"}
                     alt={`Logo ${partner.name}`}
@@ -99,16 +97,16 @@ export default function PartnersPage() {
                   />
                 </div>
               </div>
-              <CardTitle className="text-center">{partner.name}</CardTitle>
-              <CardDescription className="text-center">{partner.type}</CardDescription>
+              <CardTitle className="text-center text-gray-900 dark:text-gray-100">{partner.name}</CardTitle>
+              <CardDescription className="text-center text-gray-600 dark:text-gray-400">{partner.type}</CardDescription>
             </CardHeader>
             <CardContent className="flex-grow">
-              <p className="text-center">{partner.description}</p>
+              <p className="text-center text-gray-700 dark:text-gray-300">{partner.description}</p>
             </CardContent>
             <CardFooter className="pt-0 flex justify-center">
-              <Button asChild variant="outline">
+              <Button asChild variant="outline" className="border-gray-300 dark:border-gray-700">
                 <Link href={partner.website} target="_blank" rel="noopener noreferrer">
-                  Visiter le site <ExternalLink className="ml-2 h-4 w-4" />
+                  {t("partners.visitSite")} <ExternalLink className="ml-2 h-4 w-4" />
                 </Link>
               </Button>
             </CardFooter>
